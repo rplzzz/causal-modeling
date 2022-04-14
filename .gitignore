@@ -1,0 +1,17 @@
+## Emacs backup files
+*~
+
+## cmdstanr executables
+*.exe
+
+## saved data
+*.rds
+
+## files and images
+graphs
+plots
+
+## R stuff
+.Rhistory
+.Rproj.user
+
