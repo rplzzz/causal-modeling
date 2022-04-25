@@ -168,7 +168,51 @@ the direct effect.
   1. Direct relative risk came out to 1.21, making the difference
      between the total and direct risk well within the expected
      statistical fluctuation.
-	 
+
+## Dataset 7B
+
+Same structure and coefficients as dataset 7, except that S is
+slightly positively associated with SES and negatively associated with
+O.  Analyzing this dataset with S omitted should produce a biased
+estimate for bho, even when you control for SES.  The numbering of
+these experiments doesn't line up with the other Dataset 7 variants,
+and since none of them involve imputing SES values, I just ran them
+all with glm (so, no corresponding runmod or stan files).
+
+For this set of parameters, omitting S (i.e., O ~ uSES + H) roughly
+doubles the estimate of the coefficient on H, badly overestimating the 
+
+### Experiments
+
+  1. Total causal effect of H, controlling for S.
+  2. Total causal effect of H, omitting S.
+  3. Direct causal effects, controlling for S, H, and SES.
+  4. Direct causal effect of H, omitting S from the model.
+  
+### Results
+
+  1. bso = -0.3, bho = 0.49, ATRR_H = 1.6
+  2. bho = 0.50, ATRR_H = 1.6.  No bias in this case because we are
+     not controlling for SES.
+  3. bso = -0.18 (true value was -0.2), bho = 0.26 (true was 0.2), buo
+     = -0.49 (ture was -0.5).  ATRR_H = 1.26 (value with true bho:
+     1.19).  The value of bho is off by enough to be mildly
+     concerning, but the std. error (1-sigma) on it is 0.06, so we're
+     actually not that far off.
+  4. 
+  
+## Dataset 7C
+
+Same as Dataset 7, but with a different RNG seed.  The purpose of this
+experiment is to see whether the consistently slightly high values for
+bho we see in the other experiments are evidence of bias, or a result
+of commonalities in the datasets that were all generated from the same
+seed.
+
+
+  
+### 
+
 ## Dataset 8A
 
 Same structure as dataset 7, but the coefficient for the effect of SES
@@ -209,3 +253,4 @@ detectable effect through the admission mediator.
 
   0. Total relative risk of 1.02 +/- 0.1.  Definitely too small to
      measure.  
+

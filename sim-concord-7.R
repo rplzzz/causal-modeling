@@ -110,4 +110,15 @@ concord_7 <- sim(20000)
 
 set.seed(867-5309)
 concord_7a <- sim(20000, list(buo=0, ao=-2.15))
-saveRDS(concord_7a, 'concord-7a.rds')
+#saveRDS(concord_7a, 'concord-7a.rds')
+
+## Dataset 7B illustrates the bias that can occur if we don't control for S.
+## The size of the effect depends on the parameters.  These parameters cause the
+## model value for bho to roughly double if S is omitted.
+set.seed(867-5309)
+concord_7b <- sim(20000, list(bsu=1, bso=1, bhu=-1))
+saveRDS(concord_7b, 'concord-7b.rds')
+
+set.seed(23)
+concord_7c <- sim(20000)
+saveRDS(concord_7c, 'concord-7c.rds')
